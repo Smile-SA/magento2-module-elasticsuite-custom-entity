@@ -35,7 +35,7 @@ class InstallSchema implements InstallSchemaInterface
     /**
      * Constructor.
      *
-     * @param \Smile\ScopedEav\Setup\SchemaSetupFactory $schemaSetup Scoped EAV schema setup factory.
+     * @param \Smile\ScopedEav\Setup\SchemaSetupFactory $schemaSetupFactory Scoped EAV schema setup factory.
      */
     public function __construct(\Smile\ScopedEav\Setup\SchemaSetupFactory $schemaSetupFactory)
     {
@@ -53,6 +53,11 @@ class InstallSchema implements InstallSchemaInterface
         $schemaSetup = $this->schemaSetupFactory->create(['setup' => $setup]);
         $connection  = $setup->getConnection();
         $entityTable = 'smile_elasticsuite_custom_entity';
+
+        // Create additional attribute config table.
+        $table = $this->addAttributeConfigFields($schemaSetup->getAttributeAdditionalTable($entityTable))
+            ->setComment('ElasticSuite Custom Entity Attribute');
+        $connection->createTable($table);
 
         // Create the custom entity main table.
         $table = $schemaSetup->getEntityTable($entityTable)->setComment('ElasticSuite Custom Entity Table');
@@ -86,5 +91,39 @@ class InstallSchema implements InstallSchemaInterface
 
         // End setup.
          $setup->endSetup();
+    }
+
+    /**
+     * Add custom entity attributes special config fields.
+     *
+     * @param \Magento\Framework\DB\Ddl\Table $table Base table.
+     *
+     * @return \Magento\Framework\DB\Ddl\Table
+     */
+    private function addAttributeConfigFields(\Magento\Framework\DB\Ddl\Table $table)
+    {
+        $table->addColumn(
+            'is_global',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+            null,
+            ['unsigned' => true, 'nullable' => false, 'default' => '1'],
+            'Is Global'
+        )
+        ->addColumn(
+            'is_wysiwyg_enabled',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+            null,
+            ['unsigned' => true, 'nullable' => false, 'default' => '0'],
+            'Is WYSIWYG Enabled'
+        )
+        ->addColumn(
+            'is_html_allowed_on_front',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+            null,
+            ['unsigned' => true, 'nullable' => false, 'default' => '0'],
+            'Is HTML Allowed On Front'
+        );
+
+        return $table;
     }
 }

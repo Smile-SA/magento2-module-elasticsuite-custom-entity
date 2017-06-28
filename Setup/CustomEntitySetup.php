@@ -24,6 +24,25 @@ namespace Smile\ElasticsuiteCustomEntity\Setup;
 class CustomEntitySetup extends \Magento\Eav\Setup\EavSetup
 {
     /**
+     * Installed EAV entities.
+     *
+     * @return array
+     */
+    public function getDefaultEntities()
+    {
+        return [
+            'smile_elasticsuite_custom_entity' => [
+                'entity_model'                => \Smile\ElasticsuiteCustomEntity\Model\CustomEntity::class,
+                'attribute_model'             => \Smile\ElasticsuiteCustomEntity\Model\CustomEntity\Attribute::class,
+                'table'                       => 'smile_elasticsuite_custom_entity',
+                'attributes'                  => $this->getDefaultAttributes(),
+                'additional_attribute_table'  => 'smile_elasticsuite_custom_entity_eav_attribute',
+                'entity_attribute_collection' => 'Smile\ElasticsuiteCustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection',
+            ],
+        ];
+    }
+
+    /**
      * List of default attributes.
      *
      * @return array
@@ -37,7 +56,7 @@ class CustomEntitySetup extends \Magento\Eav\Setup\EavSetup
                 'input' => 'text',
                 'sort_order' => 1,
                 'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE,
-                'group' => 'General Information',
+                'group' => 'General',
             ],
             'is_active' => [
                 'type' => 'int',
@@ -46,30 +65,8 @@ class CustomEntitySetup extends \Magento\Eav\Setup\EavSetup
                 'source' => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
                 'sort_order' => 2,
                 'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE,
-                'group' => 'General Information',
+                'group' => 'General',
             ],
-        ];
-    }
-
-    /**
-     * Installed EAV entities.
-     *
-     * @return array
-     */
-    public function getDefaultEntities()
-    {
-        return [
-            'smile_elasticsuite_custom_entity' => [
-                'entity_model'    => \Smile\ElasticsuiteCustomEntity\Model\CustomEntity::class,
-                'attribute_model' => \Smile\ElasticsuiteCustomEntity\Model\CustomEntity\Attribute::class,
-                'table'           => 'smile_elasticsuite_custom_entity',
-                'attributes'      => $this->getDefaultAttributes(),
-                /*
-                 * TODO :
-                 * 'entity_attribute_collection' => 'Magento\Catalog\Model\ResourceModel\Category\Attribute\Collection'
-                 * + additional table
-                 */
-            ]
         ];
     }
 }

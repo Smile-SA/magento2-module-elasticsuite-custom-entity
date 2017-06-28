@@ -111,7 +111,7 @@
                 </item>
             </argument>
         </column>
-        <actionsColumn name="actions" class="Smile\ElasticsuiteCustomEntities\Ui\Component\Attribute\Listing\Column\Actions">
+        <actionsColumn name="actions" class="Smile\ElasticsuiteCustomEntity\Ui\Component\Attribute\Listing\Column\Actions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="indexField" xsi:type="string">attribute_id</item>

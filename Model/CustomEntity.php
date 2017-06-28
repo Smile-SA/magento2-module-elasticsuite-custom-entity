@@ -93,7 +93,16 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = []
     ) {
-        parent::__construct($context, $registry, $extensionFactory, $customAttributeFactory, $storeManager, $resource, $resourceCollection, $data);
+        parent::__construct(
+            $context,
+            $registry,
+            $extensionFactory,
+            $customAttributeFactory,
+            $storeManager,
+            $resource,
+            $resourceCollection,
+            $data
+        );
         $this->metadataService = $metadataService;
     }
 

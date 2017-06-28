@@ -19,7 +19,9 @@
     <!-- Default implementation for API interfaces -->
     <preference for="Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityInterface" type="Smile\ElasticsuiteCustomEntity\Model\CustomEntity" />
     <preference for="Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityAttributeInterface" type="Smile\ElasticsuiteCustomEntity\Model\CustomEntity\Attribute" />
+
     <preference for="Smile\ElasticsuiteCustomEntity\Api\CustomEntityRepositoryInterface" type="Smile\ElasticsuiteCustomEntity\Model\CustomEntityRepository" />
+    <preference for="Smile\ElasticsuiteCustomEntity\Api\CustomEntityAttributeRepositoryInterface" type="Smile\ElasticsuiteCustomEntity\Model\CustomEntityAttributeRepository" />
 
     <type name="Magento\Framework\Model\Entity\RepositoryFactory">
         <arguments>
@@ -93,6 +95,14 @@
         <arguments>
             <argument name="hydrators" xsi:type="array">
                 <item name="Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="custom_entity_attribute_listing_data_source" xsi:type="string">Smile\ElasticsuiteCustomEntity\Model\ResourceModel\CustomEntity\Attribute\Grid\Collection</item>
             </argument>
         </arguments>
     </type>

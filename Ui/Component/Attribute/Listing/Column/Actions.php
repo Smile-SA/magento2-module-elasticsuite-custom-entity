@@ -72,7 +72,7 @@ class Actions extends Column
                 if (isset($item['attribute_id'])) {
                     $item[$this->getData('name')] = [
                         'edit' => [
-                            'href' => $this->urlBuilder->getUrl(static::URL_PATH_EDIT, ['id' => $item['attribute_id']]),
+                            'href' => $this->urlBuilder->getUrl(static::URL_PATH_EDIT, ['attribute_id' => $item['attribute_id']]),
                             'label' => __('Edit'),
                         ],
                     ];

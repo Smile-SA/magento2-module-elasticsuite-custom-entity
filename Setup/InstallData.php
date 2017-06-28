@@ -18,6 +18,13 @@ use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 
+/**
+ * Custom entity data setup.
+ *
+ * @category Smile
+ * @package  Smile\ElasticsuiteCustomEntity
+ * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ */
 class InstallData implements InstallDataInterface
 {
     /**

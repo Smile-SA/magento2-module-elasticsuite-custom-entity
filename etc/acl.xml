@@ -18,10 +18,10 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Magento_Backend::stores">
-                    <resource id="Magento_Backend::stores_attributes">
-                        <resource id="Smile_ElasticsuiteCustomEntity::attributes_attributes" title="Custom Entities" translate="title" sortOrder="45" />
-                        <resource id="Smile_ElasticsuiteCustomEntity::sets" title="Custom Entities Attribute Set" translate="title" sortOrder="46"/>
+                <resource id="Smile_ElasticsuiteCore::menu">
+                    <resource id="Smile_ElasticsuiteCustomEntity::attributes" title="Manage Custom Entities">
+                        <resource id="Smile_ElasticsuiteCustomEntity::attributes_attributes" title="Custom Entities Attributes" />
+                        <resource id="Smile_ElasticsuiteCustomEntity::attributes_set" title="Custom Entities Attribute Set" />
                     </resource>
                 </resource>
             </resource>

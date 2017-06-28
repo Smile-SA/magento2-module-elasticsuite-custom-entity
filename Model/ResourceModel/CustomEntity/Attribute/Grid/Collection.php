@@ -16,6 +16,7 @@ namespace Smile\ElasticsuiteCustomEntity\Model\ResourceModel\CustomEntity\Attrib
 
 use Magento\Framework\Api\Search\AggregationInterface;
 use Magento\Framework\Api\Search\SearchResultInterface;
+use Smile\ElasticsuiteCustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection as AttributeCollection;
 
 /**
  * Custom entity attribute collection (grid).
@@ -24,7 +25,7 @@ use Magento\Framework\Api\Search\SearchResultInterface;
  * @package  Smile\ElasticsuiteCustomEntity
  * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
  */
-class Collection extends \Smile\ElasticsuiteCustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection implements SearchResultInterface
+class Collection extends AttributeCollection implements SearchResultInterface
 {
 
     /**
@@ -33,7 +34,7 @@ class Collection extends \Smile\ElasticsuiteCustomEntity\Model\ResourceModel\Cus
     private $aggregations;
 
     /**
-     * @return AggregationInterface
+     * {@inheritDoc}
      */
     public function getAggregations()
     {
@@ -41,9 +42,7 @@ class Collection extends \Smile\ElasticsuiteCustomEntity\Model\ResourceModel\Cus
     }
 
     /**
-     * Get search criteria.
-     *
-     * @return \Magento\Framework\Api\SearchCriteriaInterface|null
+     * {@inheritDoc}
      */
     public function getSearchCriteria()
     {
@@ -51,9 +50,7 @@ class Collection extends \Smile\ElasticsuiteCustomEntity\Model\ResourceModel\Cus
     }
 
     /**
-     * Get total count.
-     *
-     * @return int
+     * {@inheritDoc}
      */
     public function getTotalCount()
     {
@@ -61,13 +58,8 @@ class Collection extends \Smile\ElasticsuiteCustomEntity\Model\ResourceModel\Cus
     }
 
     /**
-     * Set search criteria.
-     *
-     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria Search criteria
-     *
-     * @return $this
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * {@inheritDoc}
+     * Not implemented since useless.
      */
     public function setSearchCriteria(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria = null)
     {
@@ -75,11 +67,7 @@ class Collection extends \Smile\ElasticsuiteCustomEntity\Model\ResourceModel\Cus
     }
 
     /**
-     * Set search aggregations.
-     *
-     * @param AggregationInterface $aggregations Aggregations.
-     *
-     * @return $this
+     * {@inheritDoc}
      */
     public function setAggregations($aggregations)
     {
@@ -87,13 +75,8 @@ class Collection extends \Smile\ElasticsuiteCustomEntity\Model\ResourceModel\Cus
     }
 
     /**
-     * Set total count.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     *
-     * @param int $totalCount Items count.
-     *
-     * @return $this
+     * {@inheritDoc}
+     * Not implemented since useless.
      */
     public function setTotalCount($totalCount)
     {
@@ -101,13 +84,8 @@ class Collection extends \Smile\ElasticsuiteCustomEntity\Model\ResourceModel\Cus
     }
 
     /**
-     * Set items list.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     *
-     * @param \Magento\Framework\Api\ExtensibleDataInterface[] $items Items.
-     *
-     * @return $this
+     * {@inheritDoc}
+     * Not implemented since useless.
      */
     public function setItems(array $items = null)
     {
@@ -115,11 +93,7 @@ class Collection extends \Smile\ElasticsuiteCustomEntity\Model\ResourceModel\Cus
     }
 
     /**
-     * Resource model initialization.
-     *
-     * @SuppressWarnings(PHPMD.CamelCaseMethodName)
-     *
-     * @return void
+     * {@inheritDoc}
      */
     protected function _construct()
     {

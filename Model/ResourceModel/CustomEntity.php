@@ -58,7 +58,7 @@ class CustomEntity extends \Smile\ScopedEav\Model\ResourceModel\AbstractResource
     /**
      * Retrieve custom entity website identifiers
      *
-     * @param \Smile\ElasticsuiteCustomEntity\Model\CustomEntity|int $entity
+     * @param \Smile\ElasticsuiteCustomEntity\Model\CustomEntity|int $entity Custom entity.
      *
      * @return array
      */
@@ -96,7 +96,7 @@ class CustomEntity extends \Smile\ScopedEav\Model\ResourceModel\AbstractResource
     /**
      * Save entity website relations
      *
-     * @param \Smile\ElasticsuiteCustomEntity\Model\CustomEntity $entity
+     * @param \Smile\ElasticsuiteCustomEntity\Model\CustomEntity $entity Entity.
      *
      * @return $this
      */

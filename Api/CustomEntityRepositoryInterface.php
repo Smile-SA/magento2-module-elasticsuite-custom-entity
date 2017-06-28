@@ -42,7 +42,6 @@ interface CustomEntityRepositoryInterface
      * Get custom entity by id.
      *
      * @param int      $entityId    Entity Id.
-     * @param bool     $editMode    Load the entity in edit mode.
      * @param int|null $storeId     Store Id.
      * @param bool     $forceReload Force reload the entity..
      *

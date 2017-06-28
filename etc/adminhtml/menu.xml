@@ -16,6 +16,8 @@
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Smile_ElasticsuiteCustomEntity::attributes_attributes" title="Custom Entities" translate="title" module="Smile_ElasticsuiteCustomEntity" sortOrder="100" parent="Magento_Backend::stores_attributes" action="custom_entity/attribute" resource="Smile_ElasticsuiteCustomEntity::attributes_attributes"/>
+        <add id="Smile_ElasticsuiteCustomEntity::attributes" title="Custom entities" module="Smile_ElasticsuiteCustomEntity" sortOrder="15" parent="Smile_ElasticsuiteCore::elasticsuite_menu" resource="Smile_ElasticsuiteCustomEntity::attributes"/>
+        <add id="Smile_ElasticsuiteCustomEntity::attributes_attributes" title="Custom Entities Attributes" translate="title" module="Smile_ElasticsuiteCustomEntity" sortOrder="100" parent="Smile_ElasticsuiteCustomEntity::attributes" action="custom_entity/attribute" resource="Smile_ElasticsuiteCustomEntity::attributes_attributes" />
+        <add id="Smile_ElasticsuiteCustomEntity::attributes_set" title="Custom Entities Attribute Sets" translate="title" module="Smile_ElasticsuiteCustomEntity" sortOrder="100" parent="Smile_ElasticsuiteCustomEntity::attributes" action="custom_entity/set" resource="Smile_ElasticsuiteCustomEntity::attributes_set" />
     </menu>
 </config>

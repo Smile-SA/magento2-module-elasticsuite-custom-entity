@@ -65,6 +65,17 @@ class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Colle
     }
 
     /**
+     * Method implemented to allow attribute set management through standard blocks.
+     * Does nothing. Allow to be compatible with product attribute collection.
+     *
+     * @return \Smile\ElasticsuiteCustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection
+     */
+    public function addVisibleFilter()
+    {
+        return $this;
+    }
+
+    /**
      * {@inheritdoc}
      *
      * @SuppressWarnings(PHPMD.CamelCaseMethodName)
@@ -101,11 +112,10 @@ class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Colle
         $this->getSelect()->from(
             ['main_table' => $this->getResource()->getMainTable()],
             $retColumns
-        )
-            /*->join(
-            ['additional_table' => $this->getTable('catalog_eav_attribute')],
+        )->join(
+            ['additional_table' => $this->getTable('smile_elasticsuite_custom_entity_eav_attribute')],
             'additional_table.attribute_id = main_table.attribute_id'
-        )*/->where(
+        )->where(
             'main_table.entity_type_id = ?',
             $entityTypeId
         );

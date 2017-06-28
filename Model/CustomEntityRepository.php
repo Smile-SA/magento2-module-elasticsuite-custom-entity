@@ -64,6 +64,15 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
      */
     private $extensibleDataObjectConverter;
 
+    /**
+     * Constructor.
+     *
+     * @param CustomEntityFactory           $customEntityFactory           Custom entity factory.
+     * @param CustomEntityResource          $customEntityResource          Custom entity resource model.
+     * @param StoreManagerInterface         $storeManager                  Store manager.
+     * @param MetadataPool                  $metadataPool                  Metadata pool.
+     * @param ExtensibleDataObjectConverter $extensibleDataObjectConverter Converter.
+     */
     public function __construct(
         CustomEntityFactory $customEntityFactory,
         CustomEntityResource $customEntityResource,
@@ -142,6 +151,7 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
         } catch (\Exception $e) {
             throw new StateException(__('Cannot delete entity with id %1', $entity->getId()), $e);
         }
+
         unset($this->instances[$entityId]);
 
         return true;
@@ -156,9 +166,4 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
 
         return $this->delete($entity);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    // public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
 }
