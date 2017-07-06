@@ -30,7 +30,7 @@
             </block>
         </referenceContainer>
         <referenceContainer name="content">
-            <block class="Smile\ElasticsuiteCustomEntity\Block\Adminhtml\Attribute\Edit" name="attribute_edit_content" />
+            <block class="Smile\ScopedEav\Block\Adminhtml\Attribute\Edit" name="attribute_edit_content" />
         </referenceContainer>
         <referenceContainer name="js">
             <block class="Magento\Backend\Block\Template" name="attribute_edit_js" template="Smile_ElasticsuiteCustomEntity::attribute/js.phtml" />
