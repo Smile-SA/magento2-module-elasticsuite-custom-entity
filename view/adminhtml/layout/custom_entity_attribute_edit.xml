@@ -22,7 +22,7 @@
         <referenceContainer name="left">
             <block class="Smile\ElasticsuiteCustomEntity\Block\Adminhtml\Attribute\Edit\Tabs" name="attribute_edit_tabs">
                 <container label="Main" name="main">
-                    <block class="Smile\ElasticsuiteCustomEntity\Block\Adminhtml\Attribute\Edit\Tab\Main" as="base" />
+                    <block class="Smile\ScopedEav\Block\Adminhtml\Attribute\Edit\Tab\Main" as="base" />
                     <block class="Magento\Eav\Block\Adminhtml\Attribute\Edit\Options\Options" as="options" />
                 </container>
                 <block class="Magento\Eav\Block\Adminhtml\Attribute\Edit\Options\Labels" as="labels" />
