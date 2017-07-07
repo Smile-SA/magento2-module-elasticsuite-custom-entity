@@ -12,21 +12,23 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Smile\ElasticsuiteCustomEntity\Api\Data;
+namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity;
 
 /**
- * Custom entity interface.
- *
- * @api
+ * Custom entity admin list controller.
  *
  * @category Smile
  * @package  Smile\ElasticsuiteCustomEntity
  * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
  */
-interface CustomEntityInterface extends \Smile\ScopedEav\Api\Data\EntityInterface
+class Index extends \Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\AbstractEntity
 {
     /**
-     * Entity code. Can be used as part of method name for entity processing.
+     *
+     * @return \Magento\Backend\Model\View\Result\Page
      */
-    const ENTITY = 'smile_elasticsuite_custom_entity';
+    public function execute()
+    {
+        return $this->createActionPage(__('Custom Entities'));
+    }
 }

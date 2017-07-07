@@ -27,11 +27,6 @@ use Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityInterface;
 class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements IdentityInterface, CustomEntityInterface
 {
     /**
-     * Entity code. Can be used as part of method name for entity processing.
-     */
-    const ENTITY = 'smile_elasticsuite_custom_entity';
-
-    /**
      * Product cache tag
      */
     const CACHE_TAG = 'smile_elasticsuite_custom_entity';

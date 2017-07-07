@@ -19,6 +19,7 @@
         <sequence>
             <module name="Magento_Catalog" />
             <module name="Smile_ScopedEav" />
+            <module name="Smile_ElasticSuiteCore" />
         </sequence>
     </module>
 </config>
