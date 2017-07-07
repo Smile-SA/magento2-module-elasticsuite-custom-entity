@@ -14,10 +14,10 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
  -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
-      layout="admin-2columns-left">
-    
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="admin-2columns-left">
+
+    <update handle="custom_entity_attribute" />
+
     <body>
         <referenceContainer name="left">
             <block class="Smile\ElasticsuiteCustomEntity\Block\Adminhtml\Attribute\Edit\Tabs" name="attribute_edit_tabs">

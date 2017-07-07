@@ -21,15 +21,25 @@ namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Attribute;
  * @package  Smile\ElasticsuiteCustomEntity
  * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
  */
-class Index extends \Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Attribute
+class Index extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Index
 {
     /**
-     * {@inheritdoc}
+     * @var string
      */
-    public function execute()
-    {
-        $resultPage = $this->createActionPage();
+    const ADMIN_RESOURCE = 'Smile_ElasticsuiteCustomEntity::attributes_attributes';
 
-        return $resultPage;
+    /**
+     * Constructor.
+     *
+     * @param \Magento\Backend\App\Action\Context $context          Context.
+     * @param \Smile\ScopedEav\Helper\Data        $entityHelper     Entity helper.
+     * @param Builder                             $attributeBuilder Attribute builder.
+     */
+    public function __construct(
+        \Magento\Backend\App\Action\Context $context,
+        \Smile\ScopedEav\Helper\Data $entityHelper,
+        Builder $attributeBuilder
+    ) {
+        parent::__construct($context, $entityHelper, $attributeBuilder);
     }
 }

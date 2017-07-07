@@ -21,24 +21,25 @@ namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Attribute;
  * @package  Smile\ElasticsuiteCustomEntity
  * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
  */
-class Edit extends \Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Attribute
+class Edit extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Edit
 {
     /**
-     * {@inheritdoc}
+     * @var string
      */
-    public function execute()
-    {
-        try {
-            $title     = __('New attribute');
-            $attribute = $this->getAttribute();
-            if ($attribute->getId()) {
-                $title = __('Edit %1', $attribute->getAttributeCode());
-            }
-            $response = $this->createActionPage($title);
-        } catch (\Exception $e) {
-            $response = $this->getRedirectError($e->getMessage());
-        }
+    const ADMIN_RESOURCE = 'Smile_ElasticsuiteCustomEntity::attributes_attributes';
 
-        return $response;
+    /**
+     * Constructor.
+     *
+     * @param \Magento\Backend\App\Action\Context $context          Context.
+     * @param \Smile\ScopedEav\Helper\Data        $entityHelper     Entity helper.
+     * @param Builder                             $attributeBuilder Attribute builder.
+     */
+    public function __construct(
+        \Magento\Backend\App\Action\Context $context,
+        \Smile\ScopedEav\Helper\Data $entityHelper,
+        Builder $attributeBuilder
+    ) {
+        parent::__construct($context, $entityHelper, $attributeBuilder);
     }
 }
