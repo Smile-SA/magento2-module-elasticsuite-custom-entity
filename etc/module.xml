@@ -18,6 +18,7 @@
     <module name="Smile_ElasticsuiteCustomEntity" setup_version="1.0.0">
         <sequence>
             <module name="Magento_Catalog" />
+            <module name="Smile_ScopedEav" />
         </sequence>
     </module>
 </config>
