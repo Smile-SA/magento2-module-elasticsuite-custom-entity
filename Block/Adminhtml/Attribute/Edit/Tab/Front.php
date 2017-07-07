@@ -50,6 +50,8 @@ class Front extends \Magento\Backend\Block\Widget\Form\Generic
 
     /**
      * {@inheritdoc}
+     *
+     * @SuppressWarnings(PHPMD.CamelCaseMethodName)
      */
     protected function _prepareForm()
     {
