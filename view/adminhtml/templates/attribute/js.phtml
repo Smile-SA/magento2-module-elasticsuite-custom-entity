@@ -38,13 +38,6 @@ function toggleApplyVisibility(select) {
         }
     }
 }
-function getFrontTab() {
-    if ($('custom_entity_attribute_tabs_front')) {
-        return $('custom_entity_attribute_tabs_front').up('li');
-    } else {
-        return $('front_fieldset-wrapper');
-    }
-}
 
 function checkOptionsPanelVisibility(){
     if($('manage-options-panel')){
@@ -125,8 +118,6 @@ function switchDefaultValueField()
 
     switch (currentValue) {
         case 'media_image':
-            getFrontTab().hide();
-
             setRowVisibility('is_required', false);
             setRowVisibility('is_unique', false);
             setRowVisibility('frontend_class', false);
@@ -135,9 +126,7 @@ function switchDefaultValueField()
         <?php foreach ($this->helper('Magento\Catalog\Helper\Data')->getAttributeHiddenFields() as $type => $fields): ?>
             case '<?php /* @escapeNotVerified */ echo $type; ?>':
                 <?php foreach ($fields as $one): ?>
-                    <?php if ($one == '_front_fieldset'): ?>
-                        getFrontTab().hide();
-                    <?php elseif ($one == '_default_value'): ?>
+                    <?php if ($one == '_default_value'): ?>
                         defaultValueTextVisibility =
                         defaultValueTextareaVisibility =
                         defaultValueDateVisibility =
@@ -152,8 +141,6 @@ function switchDefaultValueField()
         <?php endforeach; ?>
 
         default:
-            getFrontTab().show();
-
             showDefaultRows();
         break;
     }
@@ -191,7 +178,6 @@ function setRowVisibility(id, isVisible)
         }
     }
 }
-
 
 function updateRequriedOptions()
 {
@@ -262,8 +248,6 @@ if ($('is_required')) {
     Event.observe($('is_required'), 'change', updateRequriedOptions);
 }
 
-
-
 jQuery(function($) {
     bindAttributeInputType();
     // @todo: refactor collapsable component
@@ -281,7 +265,6 @@ window.showDefaultRows = showDefaultRows;
 window.switchDefaultValueField = switchDefaultValueField;
 window.bindAttributeInputType = bindAttributeInputType;
 window.checkOptionsPanelVisibility = checkOptionsPanelVisibility;
-window.getFrontTab = getFrontTab;
 window.toggleApplyVisibility = toggleApplyVisibility;
 
 });
