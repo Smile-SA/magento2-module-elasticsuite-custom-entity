@@ -22,6 +22,7 @@
                 <argument name="itemId" xsi:type="string">Smile_ElasticsuiteCustomEntity::attributes_attributes</argument>
             </action>
         </referenceBlock>
+        
         <referenceBlock name="page.title">
             <action method="setTitleClass">
                 <argument name="class" xsi:type="string">complex</argument>

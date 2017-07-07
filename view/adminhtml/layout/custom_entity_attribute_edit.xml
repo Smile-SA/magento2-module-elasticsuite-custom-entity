@@ -15,25 +15,17 @@
  */
  -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="admin-2columns-left">
-
+    
+    <!-- Custom entity attribute backend common layout. -->
     <update handle="custom_entity_attribute" />
-
+    
+    <!-- Generic attribute edit form (declared in the Smile_ScopedEav module). -->
+    <update handle="scoped_eav_attribute_edit_form" />
+    
     <body>
-        <referenceContainer name="left">
-            <block class="Smile\ScopedEav\Block\Adminhtml\Attribute\Edit\Tabs" name="attribute_edit_tabs">
-                <container label="Main" name="main">
-                    <block class="Smile\ScopedEav\Block\Adminhtml\Attribute\Edit\Tab\Main" as="base" />
-                    <block class="Magento\Eav\Block\Adminhtml\Attribute\Edit\Options\Options" as="options" />
-                    <block class="Smile\ElasticsuiteCustomEntity\Block\Adminhtml\Attribute\Edit\Tab\Front" as="front" />
-                </container>
-                <block class="Magento\Eav\Block\Adminhtml\Attribute\Edit\Options\Labels" as="labels" />
-            </block>
-        </referenceContainer>
-        <referenceContainer name="content">
-            <block class="Smile\ScopedEav\Block\Adminhtml\Attribute\Edit" name="attribute_edit_content" />
-        </referenceContainer>
-        <referenceContainer name="js">
-            <block class="Magento\Backend\Block\Template" name="attribute_edit_js" template="Smile_ElasticsuiteCustomEntity::attribute/js.phtml" />
+        <referenceContainer name="main">
+            <!-- Append custom entity specifics fields. -->
+            <block class="Smile\ElasticsuiteCustomEntity\Block\Adminhtml\Attribute\Edit\Tab\Front" as="front" />
         </referenceContainer>
     </body>
 
