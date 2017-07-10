@@ -14,11 +14,8 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
  -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <body>
-        <referenceContainer name="content">
-            <block class="Smile\ElasticsuiteCustomEntity\Block\Adminhtml\Set\Toolbar\Add" name="adminhtml.custom_entity.product.set.add"/>
-        </referenceContainer>
-    </body>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    
+    <update handle="scoped_eav_set_add" />
+
 </page>

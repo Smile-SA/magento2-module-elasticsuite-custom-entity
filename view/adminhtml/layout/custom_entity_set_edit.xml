@@ -14,16 +14,11 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
  -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <container name="adminhtml.custom_entity.product.set.edit.wrapper"
-                htmlTag="div" htmlClass="admin__scope-old"><!-- @todo ui: remove arguments within 
-                    .admin__scope-old -->
-                <block
-                    class="Smile\ElasticsuiteCustomEntity\Block\Adminhtml\Set\Main"
-                    name="adminhtml.custom_entity.product.set.edit"/>
+            <container name="adminhtml.custom_entity.product.set.edit.wrapper" htmlTag="div" htmlClass="admin__scope-old">
+                <block class="Smile\ElasticsuiteCustomEntity\Block\Adminhtml\Set\Main" name="adminhtml.custom_entity.product.set.edit" />
             </container>
         </referenceContainer>
     </body>
