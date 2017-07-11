@@ -37,10 +37,10 @@ class Builder extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\AbstractBu
 
     /**
      *
-     * @param \Magento\Framework\Registry $registry                                                             Registry.
-     * @param \Magento\Eav\Model\Config $eavConfig                                                              EAV Config.
-     * @param \Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityAttributeInterfaceFactory $attributeFactory  Attribute factory.
-     * @param \Smile\ElasticsuiteCustomEntity\Api\CustomEntityAttributeRepositoryInterface $attributeRepository Attribute repository.
+     * @param \Magento\Framework\Registry                                                    $registry            Registry.
+     * @param \Magento\Eav\Model\Config                                                      $eavConfig           EAV config.
+     * @param \Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityAttributeInterfaceFactory $attributeFactory    Attribute factory.
+     * @param \Smile\ElasticsuiteCustomEntity\Api\CustomEntityAttributeRepositoryInterface   $attributeRepository Attribute repository.
      */
     public function __construct(
         \Magento\Framework\Registry $registry,

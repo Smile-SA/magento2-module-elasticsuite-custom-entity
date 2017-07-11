@@ -31,9 +31,10 @@ class Validate extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Validate
     /**
      * Constructor.
      *
-     * @param \Magento\Backend\App\Action\Context $context          Context.
-     * @param \Smile\ScopedEav\Helper\Data        $entityHelper     Entity helper.
-     * @param Builder                             $attributeBuilder Attribute builder.
+     * @param \Magento\Backend\App\Action\Context              $context           Context.
+     * @param \Smile\ScopedEav\Helper\Data                     $entityHelper      Entity helper.
+     * @param Builder                                          $attributeBuilder  Attribute builder.
+     * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory JSON response factory.
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
