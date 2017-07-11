@@ -14,6 +14,8 @@
 
 namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Set;
 
+use Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityAttributeInterface;
+
 /**
  * Custom entity attribute set admin list controller.
  *
@@ -21,16 +23,15 @@ namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Set;
  * @package  Smile\ElasticsuiteCustomEntity
  * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
  */
-class Index extends \Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\AbstractSet
+class Index extends \Smile\ScopedEav\Controller\Adminhtml\Set\Index
 {
     /**
-     *
-     * @return \Magento\Backend\Model\View\Result\Page
+     * @var string
      */
-    public function execute()
-    {
-        $this->setTypeId();
+    const ADMIN_RESOURCE = 'Smile_ElasticsuiteCustomEntity::attributes_set';
 
-        return $this->createActionPage(__('Attribute Sets'));
-    }
+    /**
+     * @var string
+     */
+    protected $entityTypeCode = CustomEntityAttributeInterface::ENTITY_TYPE_CODE;
 }

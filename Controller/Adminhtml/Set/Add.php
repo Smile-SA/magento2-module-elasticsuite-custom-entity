@@ -14,6 +14,8 @@
 
 namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Set;
 
+use Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityAttributeInterface;
+
 /**
  * Custom entity attribute set admin add controller.
  *
@@ -21,15 +23,15 @@ namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Set;
  * @package  Smile\ElasticsuiteCustomEntity
  * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
  */
-class Add extends \Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\AbstractSet
+class Add extends \Smile\ScopedEav\Controller\Adminhtml\Set\Add
 {
     /**
-     * {@inheritDoc}
+     * @var string
      */
-    public function execute()
-    {
-        $this->setTypeId();
+    const ADMIN_RESOURCE = 'Smile_ElasticsuiteCustomEntity::attributes_set';
 
-        return $this->createActionPage(__('New Attribute Set'));
-    }
+    /**
+     * @var string
+     */
+    protected $entityTypeCode = CustomEntityAttributeInterface::ENTITY_TYPE_CODE;
 }

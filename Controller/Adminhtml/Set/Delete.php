@@ -14,30 +14,24 @@
 
 namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Set;
 
+use Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityAttributeInterface;
+
 /**
- * Custom entity attribute set admin delete controller.
+ * Custom entity attribute set deletion controller.
  *
  * @category Smile
  * @package  Smile\ElasticsuiteCustomEntity
  * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
  */
-class Delete extends \Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\AbstractSet
+class Delete extends \Smile\ScopedEav\Controller\Adminhtml\Set\Delete
 {
     /**
-     *
-     * @return \Magento\Backend\Model\View\Result\Redirect
+     * @var string
      */
-    public function execute()
-    {
-        $setId = $this->getRequest()->getParam('id');
+    const ADMIN_RESOURCE = 'Smile_ElasticsuiteCustomEntity::attributes_set';
 
-        try {
-            $this->attributeSetRepository->deleteById($setId);
-            $this->messageManager->addSuccessMessage(__('The attribute set has been removed.'));
-        } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage(__('We can\'t delete this set right now.'));
-        }
-
-        return $this->resultRedirectFactory->create()->setPath('*/*/index');
-    }
+    /**
+     * @var string
+     */
+    protected $entityTypeCode = CustomEntityAttributeInterface::ENTITY_TYPE_CODE;
 }

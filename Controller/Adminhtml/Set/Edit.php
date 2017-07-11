@@ -14,6 +14,8 @@
 
 namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Set;
 
+use Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityAttributeInterface;
+
 /**
  * Custom entity attribute set admin edit controller.
  *
@@ -21,24 +23,15 @@ namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Set;
  * @package  Smile\ElasticsuiteCustomEntity
  * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
  */
-class Edit extends \Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\AbstractSet
+class Edit extends \Smile\ScopedEav\Controller\Adminhtml\Set\Edit
 {
     /**
-     *
-     * @return \Magento\Backend\Model\View\Result\Page
+     * @var string
      */
-    public function execute()
-    {
-        $this->setTypeId();
-        try {
-            $attributeSet = $this->attributeSetRepository->get($this->getRequest()->getParam('id'));
-            $this->registry->register('current_attribute_set', $attributeSet);
-            $result = $this->createActionPage($attributeSet->getId() ? $attributeSet->getAttributeSetName() : __('New Set'));
-        } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
-            $this->messageManager->addErrorMessage(__('No such attribute set.'));
-            $result = $this->resultRedirectFactory->create()->setPath('*/*/index');
-        }
+    const ADMIN_RESOURCE = 'Smile_ElasticsuiteCustomEntity::attributes_set';
 
-        return $result;
-    }
+    /**
+     * @var string
+     */
+    protected $entityTypeCode = CustomEntityAttributeInterface::ENTITY_TYPE_CODE;
 }

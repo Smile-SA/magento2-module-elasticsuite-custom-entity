@@ -16,6 +16,11 @@
  -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <referenceBlock name="menu">
+            <action method="setActive">
+                <argument name="itemId" xsi:type="string">Smile_ElasticsuiteCustomEntity::attributes_set</argument>
+            </action>
+        </referenceBlock>
         <referenceContainer name="content">
             <container name="adminhtml.custom_entity.product.set.edit.wrapper" htmlTag="div" htmlClass="admin__scope-old">
                 <block class="Smile\ElasticsuiteCustomEntity\Block\Adminhtml\Set\Main" name="adminhtml.custom_entity.product.set.edit" />

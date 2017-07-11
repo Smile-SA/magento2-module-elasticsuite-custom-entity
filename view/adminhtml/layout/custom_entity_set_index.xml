@@ -18,4 +18,12 @@
 
     <update handle="scoped_eav_set_grid" />
 
+    <body>
+        <referenceBlock name="menu">
+            <action method="setActive">
+                <argument name="itemId" xsi:type="string">Smile_ElasticsuiteCustomEntity::attributes_set</argument>
+            </action>
+        </referenceBlock>
+    </body>
+
 </page>
