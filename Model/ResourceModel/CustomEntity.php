@@ -28,7 +28,6 @@ class CustomEntity extends \Smile\ScopedEav\Model\ResourceModel\AbstractResource
      */
     protected $customEntityWebsiteTable;
 
-
     /**
      * {@inheritdoc}
      */

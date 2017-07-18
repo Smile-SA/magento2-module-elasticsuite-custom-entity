@@ -1,14 +1,33 @@
 <?php
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteCustomEntity
+ * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @copyright 2017 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
 
 namespace Smile\ElasticsuiteCustomEntity\Ui\DataProvider\CustomEntity\Form\Modifier;
 
 use Magento\Ui\Component\Form\Field;
 use Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityInterface;
 
-class AttributeSet extends AbstractModifier
+/**
+ * Custom entity attribute set edit field management.
+ *
+ * @category Smile
+ * @package  Smile\ElasticsuiteCustomEntity
+ * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ */
+class AttributeSet extends \Smile\ScopedEav\Ui\DataProvider\Entity\Form\Modifier\AbstractModifier
 {
     /**
-     * Sort order of "Attribute Set" field inside of fieldset
+     * @var int
      */
     const ATTRIBUTE_SET_FIELD_ORDER = 30;
 
@@ -23,18 +42,25 @@ class AttributeSet extends AbstractModifier
     private $urlBuilder;
 
     /**
-     * @var \Smile\ElasticsuiteCustomEntity\Model\Locator\LocatorInterface
+     * @var \Smile\ScopedEav\Model\Locator\LocatorInterface
      */
     private $locator;
 
+    /**
+     * Constructor.
+     *
+     * @param \Smile\ScopedEav\Model\Locator\LocatorInterface                         $locator             Entity locator.
+     * @param \Magento\Framework\UrlInterface                                         $urlBuilder          URL builder.
+     * @param \Smile\ElasticsuiteCustomEntity\Model\CustomEntity\AttributeSet\Options $attributeSetOptions Attribute set source model.
+     */
     public function __construct(
-        \Smile\ElasticsuiteCustomEntity\Model\Locator\LocatorInterface $locator,
+        \Smile\ScopedEav\Model\Locator\LocatorInterface $locator,
         \Magento\Framework\UrlInterface $urlBuilder,
         \Smile\ElasticsuiteCustomEntity\Model\CustomEntity\AttributeSet\Options $attributeSetOptions
     ) {
         $this->attributeSetOptions = $attributeSetOptions;
-        $this->urlBuilder = $urlBuilder;
-        $this->locator    = $locator;
+        $this->urlBuilder          = $urlBuilder;
+        $this->locator             = $locator;
     }
 
     /**
@@ -42,9 +68,7 @@ class AttributeSet extends AbstractModifier
      */
     public function modifyMeta(array $meta)
     {
-        // TODO : remove this
-
-        if ($name = $this->getGeneralPanelName($meta)) {
+        if ($name = $this->getFirstPanelCode($meta)) {
             $meta[$name]['children']['attribute_set_id']['arguments']['data']['config'] = [
                 'component' => 'Magento_Catalog/js/components/attribute-set-select',
                 'disableLabel' => true,

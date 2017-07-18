@@ -21,8 +21,13 @@ namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity;
  * @package  Smile\ElasticsuiteCustomEntity
  * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
  */
-class Index extends \Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\AbstractEntity
+class Index extends \Smile\ScopedEav\Controller\Adminhtml\AbstractEntity
 {
+    /**
+     * @var string
+     */
+    const ADMIN_RESOURCE = 'Smile_ElasticsuiteCustomEntity::entity';
+
     /**
      *
      * @return \Magento\Backend\Model\View\Result\Page

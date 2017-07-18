@@ -16,15 +16,17 @@
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <preference for="Smile\ElasticsuiteCustomEntity\Model\Locator\LocatorInterface" type="Smile\ElasticsuiteCustomEntity\Model\Locator\RegistryLocator" />
+    <virtualType name="Smile\ElasticsuiteCustomEntity\Ui\Component\Entity\Edit\Button\Save" type="Smile\ScopedEav\Ui\Component\Entity\Edit\Button\Save">
+        <arguments>
+            <argument name="formName" xsi:type="string">custom_entity_entity_form.custom_entity_entity_form</argument>
+        </arguments>
+    </virtualType>
 
-    <virtualType
-        name="Smile\ElasticsuiteCustomEntity\Ui\DataProvider\CustomEntity\Form\Modifier\Pool"
-        type="Magento\Ui\DataProvider\Modifier\Pool">
+    <virtualType name="Smile\ElasticsuiteCustomEntity\Ui\DataProvider\CustomEntity\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
         <arguments>
             <argument name="modifiers" xsi:type="array">
                 <item name="eav" xsi:type="array">
-                    <item name="class" xsi:type="string">Smile\ElasticsuiteCustomEntity\Ui\DataProvider\CustomEntity\Form\Modifier\Eav</item>
+                    <item name="class" xsi:type="string">Smile\ScopedEav\Ui\DataProvider\Entity\Form\Modifier\Eav</item>
                     <item name="sortOrder" xsi:type="number">10</item>
                 </item>
                 <item name="attribute_set_id" xsi:type="array">
@@ -32,7 +34,7 @@
                     <item name="sortOrder" xsi:type="number">20</item>
                 </item>
                 <item name="system" xsi:type="array">
-                    <item name="class" xsi:type="string">Smile\ElasticsuiteCustomEntity\Ui\DataProvider\CustomEntity\Form\Modifier\System</item>
+                    <item name="class" xsi:type="string">Smile\ScopedEav\Ui\DataProvider\Entity\Form\Modifier\System</item>
                     <item name="sortOrder" xsi:type="number">30</item>
                 </item>
             </argument>
@@ -42,6 +44,42 @@
     <type name="Smile\ElasticsuiteCustomEntity\Ui\DataProvider\CustomEntity\Form\CustomEntityDataProvider">
         <arguments>
             <argument name="pool" xsi:type="object">Smile\ElasticsuiteCustomEntity\Ui\DataProvider\CustomEntity\Form\Modifier\Pool</argument>
+        </arguments>
+    </type>
+
+    <type name="Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity\Index">
+        <arguments>
+            <argument name="entityBuilder" xsi:type="object">Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity\Builder</argument>
+        </arguments>
+    </type>
+
+    <type name="Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity\NewAction">
+        <arguments>
+            <argument name="entityBuilder" xsi:type="object">Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity\Builder</argument>
+        </arguments>
+    </type>
+    
+    <type name="Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity\Edit">
+        <arguments>
+            <argument name="entityBuilder" xsi:type="object">Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity\Builder</argument>
+        </arguments>
+    </type>
+    
+    <type name="Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity\Delete">
+        <arguments>
+            <argument name="entityBuilder" xsi:type="object">Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity\Builder</argument>
+        </arguments>
+    </type>
+    
+    <type name="Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity\Reload">
+        <arguments>
+            <argument name="entityBuilder" xsi:type="object">Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity\Builder</argument>
+        </arguments>
+    </type>
+    
+    <type name="Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity\Save">
+        <arguments>
+            <argument name="entityBuilder" xsi:type="object">Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity\Builder</argument>
         </arguments>
     </type>
 

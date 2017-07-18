@@ -1,27 +1,30 @@
 <?php
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteCustomEntity
+ * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @copyright 2017 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
 
 namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity;
 
-use Magento\Framework\Controller\ResultFactory;
-
-class Reload extends \Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\AbstractEntity
+/**
+ * Reload custom entity admin controller.
+ *
+ * @category Smile
+ * @package  Smile\ElasticsuiteCustomEntity
+ * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ */
+class Reload extends \Smile\ScopedEav\Controller\Adminhtml\Entity\Reload
 {
     /**
-     * {@inheritdoc}
+     * @var string
      */
-    public function execute()
-    {
-        if (! $this->getRequest()->getParam('set')) {
-            return $this->resultFactory->create(ResultFactory::TYPE_FORWARD)->forward('noroute');
-        }
-
-        $entity = $this->entityBuilder->build($this->getRequest());
-
-        /** @var \Magento\Framework\View\Result\Layout $resultLayout */
-        $resultLayout = $this->resultFactory->create(ResultFactory::TYPE_LAYOUT);
-        $resultLayout->getLayout()->getUpdate()->removeHandle('default');
-
-        $resultLayout->setHeader('Content-Type', 'application/json', true);
-        return $resultLayout;
-    }
+    const ADMIN_RESOURCE = 'Smile_ElasticsuiteCustomEntity::entity';
 }

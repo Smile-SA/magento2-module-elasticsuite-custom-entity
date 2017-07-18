@@ -1,21 +1,30 @@
 <?php
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteCustomEntity
+ * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @copyright 2017 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
 
 namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity;
 
-class NewAction extends \Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\AbstractEntity
+/**
+ * New custom entity admin controller.
+ *
+ * @category Smile
+ * @package  Smile\ElasticsuiteCustomEntity
+ * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ */
+class NewAction extends \Smile\ScopedEav\Controller\Adminhtml\Entity\NewAction
 {
     /**
-     * {@inheritDoc}
+     * @var string
      */
-    public function execute()
-    {
-        if (!$this->getRequest()->getParam('set')) {
-            return $this->_forward('noroute');
-        }
-
-        $entity = $this->entityBuilder->build($this->getRequest());
-        $this->_eventManager->dispatch('custom_entity_entity_new_action', ['entity' => $entity]);
-
-        return $this->createActionPage(__('Create entity'));
-    }
+    const ADMIN_RESOURCE = 'Smile_ElasticsuiteCustomEntity::entity';
 }

@@ -21,7 +21,7 @@ namespace Smile\ElasticsuiteCustomEntity\Model\ResourceModel\CustomEntity;
  * @package  Smile\ElasticsuiteCustomEntity
  * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
  */
-class Collection extends \Magento\Catalog\Model\ResourceModel\Category\Collection
+class Collection extends \Magento\Catalog\Model\ResourceModel\Collection\AbstractCollection
 {
     /**
      * Event prefix
@@ -38,6 +38,17 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Category\Collectio
     protected $_eventObject = 'custom_entity_collection';
 
     /**
+     * {@inheritDoc}
+     */
+    public function addIsActiveFilter()
+    {
+        $this->addAttributeToFilter('is_active', 1);
+        $this->_eventManager->dispatch($this->_eventPrefix . '_add_is_active_filter', [$this->_eventObject => $this]);
+
+        return $this;
+    }
+
+    /**
      * Init collection and determine table names
      *
      * @return void
@@ -48,13 +59,5 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Category\Collectio
             'Smile\ElasticsuiteCustomEntity\Model\CustomEntity',
             'Smile\ElasticsuiteCustomEntity\Model\ResourceModel\CustomEntity'
         );
-    }
-
-    public function addIsActiveFilter()
-    {
-        $this->addAttributeToFilter('is_active', 1);
-        $this->_eventManager->dispatch($this->_eventPrefix . '_add_is_active_filter', [$this->_eventObject => $this]);
-
-        return $this;
     }
 }

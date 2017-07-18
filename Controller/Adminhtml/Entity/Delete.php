@@ -1,31 +1,30 @@
 <?php
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteCustomEntity
+ * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @copyright 2017 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+
 namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity;
 
-class Delete extends \Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\AbstractEntity
+/**
+ * Delete custom entity admin controller.
+ *
+ * @category Smile
+ * @package  Smile\ElasticsuiteCustomEntity
+ * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ */
+class Delete extends \Smile\ScopedEav\Controller\Adminhtml\Entity\Delete
 {
-    public function execute()
-    {
-        $entity   = $this->getEntity();
-        $storeId  = $this->getStoreId();
-        $entityId = $this->getEntityId();
-
-        if (($entityId && !$entity->getEntityId())) {
-            $resultRedirect = $this->resultRedirectFactory->create();
-            $this->messageManager->addErrorMessage(__('This entity doesn\'t exist.'));
-        } else if ($entityId === 0) {
-            $resultRedirect = $this->resultRedirectFactory->create();
-            $this->messageManager->addErrorMessage(__('Invalid entity id. Should be numeric value greater than 0'));
-        } else {
-            $this->_eventManager->dispatch('custom_entity_entity_delete_action', ['entity' => $entity]);
-
-            try {
-                $entity->delete();
-                $this->messageManager->addSuccessMessage(__('Entity have been deleted successfuly.'));
-            } catch (\Exception $e) {
-                $this->messageManager->addExceptionMessage($e, __('Can not delete entity.'));
-            }
-        }
-
-        return $this->_redirect("*/*/");
-    }
+    /**
+     * @var string
+     */
+    const ADMIN_RESOURCE = 'Smile_ElasticsuiteCustomEntity::entity';
 }

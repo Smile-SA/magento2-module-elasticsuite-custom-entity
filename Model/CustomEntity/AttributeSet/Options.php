@@ -17,7 +17,7 @@ namespace Smile\ElasticsuiteCustomEntity\Model\CustomEntity\AttributeSet;
 use Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityInterface;
 
 /**
- * Custom entity attribute implementation.
+ * Custom entity attribute set source model.
  *
  * @category Smile
  * @package  Smile\ElasticsuiteCustomEntity
@@ -30,11 +30,19 @@ class Options extends \Magento\Catalog\Model\Product\AttributeSet\Options
      */
     private $eavConfig;
 
+    /**
+     * Constructor.
+     *
+     * @param \Magento\Eav\Model\Config $eavConfig EAV Config.
+     */
     public function __construct(\Magento\Eav\Model\Config $eavConfig)
     {
         $this->eavConfig = $eavConfig;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function toOptionArray()
     {
         $entityType             = $this->eavConfig->getEntityType(CustomEntityInterface::ENTITY);

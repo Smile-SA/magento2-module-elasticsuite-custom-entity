@@ -51,7 +51,7 @@
             <argument name="metadata" xsi:type="array">
                 <item name="Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityInterface" xsi:type="array">
                     <item name="entityContext" xsi:type="array">
-                        <item name="store" xsi:type="string">Magento\Store\Model\DefaultStoreScopeProvider</item>
+                        <item name="store" xsi:type="string">Magento\Store\Model\StoreScopeProvider</item>
                     </item>
                 </item>
             </argument>
@@ -73,7 +73,6 @@
 
     <virtualType name="Smile\ElasticsuiteCustomEntity\Model\ResourceModel\UpdateHandler" type="Magento\Eav\Model\ResourceModel\UpdateHandler">
         <arguments>
-            <!-- TODO -->
             <argument name="attributePersistor" xsi:type="object">Smile\ScopedEav\Model\ResourceModel\AttributePersistor</argument>
         </arguments>
     </virtualType>

@@ -1,9 +1,28 @@
 <?php
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteCustomEntity
+ * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @copyright 2017 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
 
 namespace Smile\ElasticsuiteCustomEntity\Controller\Adminhtml\Entity;
 
-class Builder {
-
+/**
+ * Admin controller custom entity builder.
+ *
+ * @category Smile
+ * @package  Smile\ElasticsuiteCustomEntity
+ * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ */
+class Builder implements \Smile\ScopedEav\Controller\Adminhtml\Entity\BuilderInterface
+{
     /**
      * @var \Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityInterfaceFactory
      */
@@ -25,45 +44,39 @@ class Builder {
     private $registry;
 
     /**
-     * @var \Psr\Log\LoggerInterface
+     * Constructor.
+     *
+     * @param \Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityInterfaceFactory $customEntityFactory Custom entity factory.
+     * @param \Magento\Store\Model\StoreManagerInterface                            $storeManager        Store manager.
+     * @param \Magento\Framework\Registry                                           $registry            Registry.
+     * @param \Magento\Cms\Model\Wysiwyg\Config                                     $wysiwygConfig       Wysiwyg config.
      */
-    private $logger;
-
     public function __construct(
         \Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityInterfaceFactory $customEntityFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Registry $registry,
-        \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig,
-        \Psr\Log\LoggerInterface $logger
+        \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig
     ) {
         $this->customEntityFactory = $customEntityFactory;
         $this->storeManager        = $storeManager;
         $this->registry            = $registry;
         $this->wysiwygConfig       = $wysiwygConfig;
-        $this->logger              = $logger;
     }
 
     /**
-     *
-     * @param RequestInterface $request
-     *
-     * @return \Smile\ElasticsuiteCustomEntity\Api\Data\CustomEntityInterface
+     * {@inheritDoc}
      */
     public function build(\Magento\Framework\App\RequestInterface $request)
     {
         $entityId = (int) $request->getParam('id');
         $entity   = $this->customEntityFactory->create();
-        $store    = $this->storeManager->getStore($request->getParam('store', 0));
+        $store    = $this->storeManager->getStore((int) $request->getParam('store', 0));
 
         $entity->setStoreId($store->getId());
         $entity->setData('_edit_mode', true);
 
         if ($entityId) {
-            try {
-                $entity->load($entityId);
-            } catch (\Exception $e) {
-                $this->logger->critical($e);
-            }
+            $entity->load($entityId);
         }
 
         $setId = (int) $request->getParam('set');
@@ -72,6 +85,7 @@ class Builder {
             $entity->setAttributeSetId($setId);
         }
 
+        $entity->setPrevAttributeSetId((int) $request->getParam('prev_set_id', 0));
 
         $this->registry->register('entity', $entity);
         $this->registry->register('current_entity', $entity);
