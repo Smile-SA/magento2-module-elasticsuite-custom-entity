@@ -68,7 +68,7 @@ class AttributeSet extends \Smile\ScopedEav\Ui\DataProvider\Entity\Form\Modifier
      */
     public function modifyMeta(array $meta)
     {
-        if ($name = $this->getFirstPanelCode($meta)) {
+        if (($name = $this->getFirstPanelCode($meta)) && $this->locator->getEntity()->getId() == null) {
             $meta[$name]['children']['attribute_set_id']['arguments']['data']['config'] = [
                 'component' => 'Magento_Catalog/js/components/attribute-set-select',
                 'disableLabel' => true,
