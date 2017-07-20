@@ -22,6 +22,7 @@
 
     <preference for="Smile\ElasticsuiteCustomEntity\Api\CustomEntityRepositoryInterface" type="Smile\ElasticsuiteCustomEntity\Model\CustomEntityRepository" />
     <preference for="Smile\ElasticsuiteCustomEntity\Api\CustomEntityAttributeRepositoryInterface" type="Smile\ElasticsuiteCustomEntity\Model\CustomEntityAttributeRepository" />
+    <preference for="Smile\ElasticsuiteCustomEntity\Api\CustomEntityProductLinkManagementInterface" type="Smile\ElasticsuiteCustomEntity\Model\CustomEntityProductLinkManagement" />
 
     <type name="Magento\Framework\Model\Entity\RepositoryFactory">
         <arguments>
@@ -102,6 +103,35 @@
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="custom_entity_attribute_listing_data_source" xsi:type="string">Smile\ElasticsuiteCustomEntity\Model\ResourceModel\CustomEntity\Attribute\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Eav\Model\Attribute\FrontendType">
+        <arguments>
+            <argument name="config" xsi:type="array">
+                <item name="select" xsi:type="array">
+                    <item name="select" xsi:type="string">select</item>
+                    <item name="smile_custom_entity" xsi:type="string">smile_custom_entity</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Magento\Catalog\Api\Data\ProductInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="customEntityReader" xsi:type="string">Smile\ElasticsuiteCustomEntity\Model\Product\CustomEntity\ReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="customEntityCreator" xsi:type="string">Smile\ElasticsuiteCustomEntity\Model\Product\CustomEntity\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="customEntityUpdater" xsi:type="string">Smile\ElasticsuiteCustomEntity\Model\Product\CustomEntity\SaveHandler</item>
+                    </item>
+                </item>
             </argument>
         </arguments>
     </type>

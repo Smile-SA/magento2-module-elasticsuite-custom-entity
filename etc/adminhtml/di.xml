@@ -83,4 +83,20 @@
         </arguments>
     </type>
 
+    <type name="Magento\Ui\DataProvider\Mapper\FormElement">
+        <arguments>
+            <argument name="mappings" xsi:type="array">
+                <item name="smile_custom_entity" xsi:type="string">input</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Eav">
+        <plugin name="setupCustomEntity" type="Smile\ElasticsuiteCustomEntity\Plugin\Catalog\Ui\DataProvider\Product\Form\Modifier\EavPlugin" />
+    </type>
+   
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Initialization\Helper">
+        <plugin name="defaultCustomEntity" type="Smile\ElasticsuiteCustomEntity\Plugin\Catalog\Controller\Adminhtml\Product\Initialization\HelperPlugin" />
+    </type>
+    
 </config>
