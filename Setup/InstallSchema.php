@@ -89,6 +89,13 @@ class InstallSchema implements InstallSchemaInterface
             ->setComment('Custom Entity To Website Linkage Table');
         $connection->createTable($table);
 
+        // Fix catalog_eav_attribute table.
+        $this->addProductAttributeConfigFields($setup);
+
+        // Create relation table between product and custom entities.
+        $table = $this->getProductLinkTable($setup);
+        $connection->createTable($table);
+
         // End setup.
          $setup->endSetup();
     }
@@ -123,6 +130,103 @@ class InstallSchema implements InstallSchemaInterface
             ['unsigned' => true, 'nullable' => false, 'default' => '0'],
             'Is HTML Allowed On Front'
         );
+
+        return $table;
+    }
+
+    /**
+     * Append new configuration field custom_entity_attribute_set_id in catalog_eav_attribute table.
+     *
+     * @param SchemaSetupInterface $setup Setup
+     *
+     * @return void
+     */
+    private function addProductAttributeConfigFields(SchemaSetupInterface $setup)
+    {
+        $connection = $setup->getConnection();
+
+        $connection->addColumn(
+            $setup->getTable('catalog_eav_attribute'),
+            'custom_entity_attribute_set_id',
+            [
+                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                'default' => null,
+                'unsigned' => true,
+                'nullable' => true,
+                'comment' => 'Additional swatch attributes data',
+            ]
+        );
+
+        $connection->addForeignKey(
+            $connection->getForeignKeyName(
+                'catalog_eav_attribute',
+                'custom_entity_attribute_set_id',
+                'eav_attribute_set',
+                'attribute_set_id'
+            ),
+            $setup->getTable('catalog_eav_attribute'),
+            'custom_entity_attribute_set_id',
+            $setup->getTable('eav_attribute_set'),
+            'attribute_set_id'
+        );
+    }
+
+    /**
+     * Create the relation table between entities and products.
+     *
+     * @param SchemaSetupInterface $setup Setup.
+     *
+     * @return \Magento\Framework\DB\Ddl\Table
+     */
+    private function getProductLinkTable(SchemaSetupInterface $setup)
+    {
+        $entityTable = 'smile_elasticsuite_custom_entity';
+        $connection  = $setup->getConnection();
+
+        $table = $connection->newTable($setup->getTable('catalog_product_custom_entity_link'))
+            ->addColumn(
+                'product_id',
+                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                null,
+                ['unsigned' => true, 'nullable' => false, 'primary' => true],
+                'Entity ID'
+            )
+            ->addColumn(
+                'attribute_id',
+                \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                null,
+                ['unsigned' => true, 'nullable' => false, 'default' => '0'],
+                'Attribute ID'
+            )
+            ->addColumn(
+                'custom_entity_id',
+                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                null,
+                ['unsigned' => true, 'nullable' => false, 'primary' => true],
+                'Entity ID'
+            )
+            ->addForeignKey(
+                $setup->getFkName('catalog_product_custom_entity_link', 'attribute_id', 'eav_attribute', 'attribute_id'),
+                'attribute_id',
+                $setup->getTable('eav_attribute'),
+                'attribute_id',
+                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+            )
+            ->addForeignKey(
+                $setup->getFkName('catalog_product_custom_entity_link', 'product_id', 'catalog_product_entity', 'entity_id'),
+                'product_id',
+                $setup->getTable('catalog_product_entity'),
+                'entity_id',
+                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+            )
+            ->addForeignKey(
+                $setup->getFkName('catalog_product_custom_entity_link', 'custom_entity_id', $entityTable, 'entity_id'),
+                'custom_entity_id',
+                $setup->getTable($entityTable),
+                'entity_id',
+                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+            )
+            ->setComment('Product custom entities relations');
 
         return $table;
     }
